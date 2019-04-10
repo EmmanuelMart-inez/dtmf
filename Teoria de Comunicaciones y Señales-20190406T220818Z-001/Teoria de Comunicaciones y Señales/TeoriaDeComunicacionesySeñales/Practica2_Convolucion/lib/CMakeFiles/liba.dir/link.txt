@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC   -shared -Wl,-soname,libliba.so -o libliba.so CMakeFiles/liba.dir/a.c.o 

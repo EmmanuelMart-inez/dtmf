@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion",
+  "command": "/usr/bin/cc  -I\"/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib\"    -o CMakeFiles/test_a.dir/wav.c.o   -c \"/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/wav.c\"",
+  "file": "/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/wav.c"
+},
+{
+  "directory": "/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib",
+  "command": "/usr/bin/cc -Dliba_EXPORTS  -fPIC   -o CMakeFiles/liba.dir/a.c.o   -c \"/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/a.c\"",
+  "file": "/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/a.c"
+}
+]

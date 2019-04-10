@@ -1,0 +1,521 @@
+GoldWave Revision History
+-------------------------
+
+v4.26
+-----
+	Added rate setting to batch conversion.
+	Added information message when opening .CDA files.
+	Added log window for CD extraction to locate problems.
+	Improved ID3 tag preservation across edits.
+	Added code to preserve skipped header for File Types settings.
+	Fixed bugs: edit box focus in evaluator, drop marker/cue shortcut
+		keystrokes when monitor enabled, main window enabled after
+		split, resampling error, blocked debug log message.
+
+v4.25
+-----
+	Added settings to Mark Silence Cue Point feature.
+	Added Controls under Options menu and Device Controls under Window
+	  Companion menu to make them easier to find.
+	Added new licensing system for faster, automated, online orders.
+	Added support for 24 bit AIFF files.
+	Fixed bugs: Evaluator focus, CD device select empty track.
+
+v4.24
+-----
+	Added cue point time stamp to level activated recording.
+	Added automatic cue points to CD audio extraction tool to
+	  mark tracks.
+	Increased batch conversion file list size.
+	Increased new file length limit.
+	Refined MP3 encoder search code.
+	Added sgn() function to Evaluator.
+	Fixed bugs: memory problem with Time warp and Pitch effects,
+	  pop/click filter tail, extra button for joystick option.
+
+v4.23
+-----
+	Changed contact information to GoldWave Inc.
+	Added more Vorbis support and created new module.
+	Added internal option to fully open VBR MP3 files.
+	Added room for one more recording volume control.
+	Added code to find MP3 encoder if not copied to System folder.
+	Improved volume shape smoothness.
+
+v4.22
+-----
+	Revised German version.
+	Added confirmation message when deleting presets.
+	Added Ctrl+J key to jump start marker to cue point.
+	Fixed marker dropping keys.
+
+v4.21
+-----
+	Added code to try to avoid problem where Microsoft's multimedia
+	  streaming interface uses incorrect format for MPEG files.
+	Changed ID3 tag for author in MP3 files.
+	Removed extended padding header from ID3 tag for better
+	  compatibility with older software.
+	Added Ctrl+Q key to drop cue points while recording or playing.
+	Added new colour graphs.
+	Added Joystick control option under Device Properties.
+	Fixed evaluator tool using waveX terms.
+	Fixed time warp when using small change factors.
+
+v4.20
+-----
+	German version.
+	Added more Vorbis attributes.
+	Fixed cue points ordering for large files.
+
+v4.19
+-----
+	Changed fast forward and rewind to use original playback region.
+	Fixed Copy to.
+
+v4.18
+-----
+	Added Ogg Vorbis support to batch converter.
+	Added help information for Vorbis codec.
+
+v4.17
+-----
+	Upgraded to Borland C++Builder 5.
+	Improved CD audio extraction support under NT and 2000.
+	Added ability to continue CD extraction when synchronization lost.
+	Set GoldWave clipboard as default.
+	Added option to open ASF files missing length information.
+	Added Ogg Vorbis file support through new Common Audio Layer.
+	Fixed bugs: noise gate, mpeg overflow, pops in file conversion,
+	  file conversion exception, expand/compress, snap to zero-crossing
+	  exception, raw filename extension, stereo noise reduction with
+	  clipboard.
+
+v4.16
+-----
+	Fixed Volume Properties incompatibility with some sound cards.
+
+v4.15
+-----
+	Added Batch conversion feature.
+	Added Pop/Click filter effect.
+	Added Split file button to Cue points tool.
+	Added bitrate to status bar for MP3 files.
+	Added more MP3 bitrate options under Save as.
+	Improved graph refresh rate during disk access.
+	Added SPTI support for CD audio extraction under NT.
+	Fixed bugs: dragging one marker beyond the other gives negative
+	  range, [ and ] keys not working while monitoring, unbounded
+	  recording inconsistencies, missing temporary folder, save as,
+	  playback buffering, etc.
+
+v4.12
+-----
+	Created self-installing program.
+	Changed Device Controls Graph Properties to show a list of graphs.
+	Added X-Y Mode graph.
+	Synchronized left and right graphs.
+	Added Unbounded option to Record Properties so file storage
+	  can be allocated dynamically.
+	Changed Countdown timer to day/time timer.
+	Improved Volume Properties compatibility.
+	Added scrolling during playback when Scroll Lock key on.
+	Added RMS setting to Volume Maximize command.
+	Changed installation notice.
+	Removed dependency on DDRAW.DLL.
+	Added limited ID3v2 3.0 tag support.
+	Changed MPEG attributes to show sampling rates.
+	Fixed bugs: end-of-file noise in some compressed formats,
+	  use average in noise reduction, interpolate, file size.
+
+v4.11
+-----
+	Fixed graph border in Device Controls window.
+
+v4.10
+-----
+	Added tooltips to Device Controls buttons.
+	Changed scroll bars to faders in Device Controls.
+	Changed LED meters to gradient colours and added limit LED.
+	Added two new realtime spectrum graph types to Graph properties.
+	Added right-click context menu for selecting graph.
+	Added fade time setting to Graph properties.
+	Changed rewind and fast forward to work without playing first.
+	Added recording Volume tab to Device Controls properties.
+	Added Information command to File menu.
+	Added Previous zoom command to View menu.
+	Added Initial zoom setting to Window options.
+	Added right-click context menu for cue points.
+	Added Store and Recall commands to Marker submenu.
+	Added 24 bit file support.
+	Added floating point WAV file support.
+	Added support for Windows Media audio compression in WAV files.
+	Added support for BladeEnc MPEG layer 3 encoder.
+	Added transparent support for all audio related formats recognized
+	  by the operating system, including movies: MOV, AVI, MPG, ASF
+	  (requires DirectX Media).
+	Removed Audio extraction submenu (AVI extraction not necessary).
+	Added Skip bytes setting to File types.
+	Added Use clipboard option to Noise reduction.
+	Added Expand/Compress effect.
+	Added status bar range update when dragging a marker.
+	Changed status bar range to show selection length.
+	Added y-axis number colour setting.
+	Updated help and manual.
+	Converted images and figures for manual.
+	Fixed bugs: Borland/Microsoft floating point exception, channel
+	  mixing and pasting, lost first sample in right channel paste,
+	  drop marker commands, copy to, pan, resample, etc.
+
+v4.04
+-----
+	German demonstration version.
+
+v4.03
+-----
+	German version (http://www.goldwave.de).
+	Fixed bugs: stereo text files, converting stereo to mono with right
+	  channel selected, insert silence in one channel, MPEG 2.5, resample
+	  enabling, remove vocals save as mono, 12 bit unsigned save.
+
+v4.02
+-----
+	Added OS Association to File Types option.
+	Improved CD extraction "fix defects" processing.
+	Revised manual and created HTML text version.
+	Added more help, including a "Getting Started" section.
+	Added some presets and expressions.
+	Improved handling of invalid WAV files.
+	Fixed bugs: zero-crossing, minimized Device Controls window,
+	  looping, axis 'k' numbering, positioning in full duplex,
+	  CD track end time, VOC conversions, time warp, etc.
+
+v4.01
+-----
+	Added Select all command to Edit menu.
+	Added Snap to zero-crossing to Marker submenu.
+	Created Save as, Select all, Rewind, Fast, and Pause buttons
+	  for tool bar configuration list.
+	Added Custom format buttons in Save as dialog.
+	Added analysis graphs and time bar to Parametric EQ.
+	Added function key support to Device Controls window.
+	Clicking on balance or speed scroll bar icon resets bar to default.
+	Added Finish to Device Controls Play Properties user play options.
+	Increased LED meter hold time maximum.
+	Selected initial preferred devices from Audio Properties.
+	Changed CD extraction tool to show device list before requesting
+	  an audio CD.
+	Added new CD extraction read technique and added support for
+	  more drives.
+	Saved CD extraction options and settings.
+	Status bar time and range format settings saved.
+	Added Copy all command to cue point tool to copy all points to
+	  the clipboard in text format.
+	Added MP3 file support to open raw MPEG layer 3 compressed files.
+	Fixed bugs: File | Close, ASCII floating point file, help
+	  links, File Format help button, File Types caption, etc.
+
+v4.00
+-----
+	Upgraded to Borland C++ 5.02.
+	Redesigned all dialogs for improved ease of use.
+	Removed all BWCC32.DLL controls.
+	Added up/down controls to some dialogs.
+	Added scroll bar controls to some dialogs.
+	Used property sheet for expanded Device Controls setup.
+	Added several windowing functions for spectral displays.
+	Added View option for user play button.
+	Added LED hold feature and time setting.
+	Added Show axis option to draw axes on oscilloscopes.
+	Added safety key, Mix, cache, and undo options for Recording
+	Added Estimate option for device positioning.
+	Added Microsoft Sound Mapper device selection.
+	Changed balance scroll bar image to indicate left, center, or
+	  right balance setting.
+	Changed balance and speed scroll bar paging to round to nearest
+	  level.
+	Added oscilloscope display when dragging start/finish markers.
+	Added new style dockable controls bars.
+	Added Tool bar customization command to Options menu.
+	Added many new tool bar buttons, selectable under new tool bar
+	  configuration command.
+	Added submenu to Window menu to hide/show control bars and
+	  status bars.
+	Improved "New Sound" selection dialog and added buttons for
+	  common settings.
+	Added Replace command to Edit menu.
+	Added Copy to command to Edit menu.
+	Added Marker submenu to Edit menu.
+	Added Set command to numerically set or align markers.
+	Added Drop start/finish commands to move marker to current
+	  playback position (keyboard '[' and ']').
+	Improved Noise gate effect with attack and anticipation settings.
+	Added Noise reduction effect with three reduction modes: shape,
+	  current, and average.
+	Improved range and accuracy of all filters.
+	Added 7-band graphic equalizer, with presets.
+	Enhanced Doppler effect to allow changes to only one channel.
+	Added Time warp effect with three different algorithms, two of
+	  which allow speed/tempo changes without changing pitch.
+	Moved Speed effect under Time warp effect.
+	Replaced Transpose with Pitch effect and added option to change
+	  pitch without changing tempo.
+	Enhanced transpose/pitch effect to change selection instead
+	  of entire file.
+	Enhanced Maximize effect to show rms level and maximum
+	  level/position and to specify new level.
+	Create stereo effects submenu.
+	Moved Pan and Exchange to stereo effects submenu.
+	Added Remove vocals effect to stereo submenu.
+	Added Audio extraction submenu to Tool menu.
+	Created AVI audio extration tool.
+	Created CD audio extration tool for SCSI CD-ROM drives.
+	Added vertical zoom in/out and amplitude axis.
+	Added several new zoom commands and keystrokes: Zoom in, Zoom out,
+	  Vertical zoom all, Vertical zoom in, Vertical zoom out.
+	Added options to configure units for time and amplitude axis.
+	Added drag-and-drop cue point positioning.
+	Improved File Format selection dialog to support many new formats.
+	Increased recently used file history list size.
+	Added customizable file extensions for associating a format to a
+	  given extension.
+	Added customized extensions to Open dialog "Files of type" list.
+	New file formats supported: MPEG layer 3 wave codec, ASCII integer,
+	  ASCII float, ISDN A-law, IEEE single precision, 32-bit.
+	Updated help file.
+	Fixed bugs: compressed file handling, inverted A-law, looping,
+	  random fpe.
+
+
+v3.24
+-----
+	Upgraded to OWL 5.0 and Borland C++ 5.0.
+	Added tool tips.
+	Change dialogs and status bar to use normal font.
+	Added better time entry boxes (HH:MM:SS.TTT).
+	Added Speed effect.
+	Added A-Law support to VOC files.
+	Added command line option to play file.
+	Added many new expressions to Expression Evaluator.
+	Limited "Unselected" playback to view, when possible.
+	Improved looping of small sections.
+	Added uncached direct-to-disk recording.
+	Added cue point markers in Sound window.
+	Fixed bugs: Saving in raw/vox format, modified status, playback
+	  lock, clipboard, graph drawing.
+
+v3.23
+-----
+	Changed buttons to use system colours.
+	Preset name stored.
+	Fixed bugs: Finish marker move during recording, 8-bit rounding
+	  error on evaluator, command line, modified status/save enable.
+
+v3.22
+-----
+	Added option to use private clipboard or Windows clipboard to
+	  work around problems with unreliable Windows 95 clipboard.
+	Added support for MIDI Sample Dump SDS files.
+	Added scrollbar tracking when zoomed in.
+	Added keystrokes for moving start/finish markers and
+	  opening files.
+	Reduced processor usage.
+	Fixed bugs: Special character filenames, Countdown timer, Save
+	  monitor option, File options on NT, Close and Maximize, Help.
+
+v3.21
+-----
+	Modified code to use old style Open/Save dialogs for Windows NT.
+	Added autoscroll when dragging start or finish marker outside
+	  view when zoomed in.
+	Increased number of Parametric EQ bands to 30.
+	Added automatic frame rate limiter for oscilloscopes to reduce
+	  CPU load.
+	Fixed bugs: Cleared coordinates, Path dialog.
+
+
+v3.20
+-----
+	Converted code to 32-bit flat address model.
+	Added Paste new command to Edit menu.
+	Added a configurable parametric equalizer with 10 bands and a
+	  graphical interface with logarithmic scales.
+	Added easy to use dynamic lowpass, highpass, bandpass and
+	  bandstop filters.
+	Added long filename support and new Open/Save dialogs.
+	Added file support for Dialogic VOX, Sample Vision SMP,
+	  DiamondWare DWD, and old style Apple AIFF.
+	Added special Java/Web attribute to Sun (*.au) format list.
+	Added transparent support for Microsoft's Audio Compression
+	  Manager allowing wave files to be compressed using a number
+	  of different algorithms.
+	Added multithreading to recording and playback to eliminate gaps.
+	Added new recording options to Device Controls Setup: countdown
+	  timer, level/threshold controlled recording, and looping.
+	Added configurable frame rate for Device Controls displays.
+	Redirected CD Player command to Windows CD Player.
+	Added Volume Control to Tool menu.
+	Added Ctrl+F9 and Ctrl+F8 recording keystroke.
+	Added coordinates to status bar when zoomed in 1:1.
+	Added "proportional" scroll bars to Sound windows to show a
+	  closer relationship to the Overview bar.
+	"New Sound" settings now saved in configuration file.
+	Stopped entire view from being displayed after edit/effect.
+	Added code to automatically copy/update expressions and presets
+	  files.
+	Fixed bugs: File | Close, Device Controls hidden by task bar,
+	  Undo disable, Evaluator overflow, Input buffer size, etc.
+
+
+v3.03
+-----
+	Added Colours to Options menu.
+	Added frame times to status bar.
+	Added Playback buffer setting to Device Controls setup.
+	Improved CD controls.
+	Added support for A-Law in AU format.
+	Update on-line help.
+	Fixed bugs: AU, AIFC, and stereo conversions, View menu,
+	  Pan Y value, Save as dialog keys, playback, Doppler, etc.
+
+v3.01 to v3.02:
+---------------
+	Added Start and Finish to View menu.
+	Added Paste at command to Edit menu.
+	Added Triple buffering and Unselected to Device Setup.
+	Changed Intro/end to Intro/loop/end.
+	Added inject to CD Player, when supported.
+	Fixed bugs: monitor/deflash, extended character filenames,
+	  paste noise, AIF and WAV file handling, playback problems,
+	  save status, paste fpe, etc.
+
+v3.00:
+------
+	Version 3.00 is almost a complete rewrite of the code using
+	  Borland OWL 2.0 and improved C++ object oriented constructs.
+	Developed with a 32-bit future in mind.
+	Redesigned file handling to allow on-the-fly conversions, huge
+	  file support, transparent RAM or hard disk storage, flash, and
+	  an unlimited number of opened files.
+	Added File options to configure storage, flash, and directories.
+	Added directory selection dialog.
+	Added a file history to File menu.
+	Combined Export with Save as and added more file types and
+	  attributes.
+	Added support for Apple AFC & AIF, A-Law, and WAV A-Law.
+	Added A-Law and IEEE double to Raw File Format dialog.
+	Added new effects: distortion, doppler, noise gate, user defined
+	  filter, and flange.
+	Added fine tune to transpose.
+	Removed interpolate from Resample (always interpolates).
+	Improved status report during processing to allow user to
+	  switch to another application.
+	Improved Shape boxes using a special technique to preserve
+	  the background without affecting the foreground line, allowing
+	  solid grids and numbered axis to be added.
+	Added presets to save shapes and effects parameters in gwpreset.ini.
+	Redesigned Device Controls window and made it resizable.
+	Moved audio device selection to Device Setup dialog.
+	Implemented a virtual audio device for realtime rewind and
+	  fast forward playback, automatic 16-bit to 8-bit conversion,
+	  and automatic resampling.
+	Added realtime log spectrum bar graph, spectrogram, and
+	  LED meters.
+	Added click-to-change feature on oscilloscopes.
+	Added automatic volume updating when another program changes
+	  the device volume.
+	Added configurable play button: selection, all, intro/end,
+	  and looping.
+	Replaced record looping with monitor.
+	Added configurable recording buffer size.
+	Made working buttons and LEDs on minimized Device Controls window.
+	Allowed Device Controls window to be closed to recover screen space.
+	Added a second Tool Bar for quick access to effects.
+	Created dozens of new bitmapped buttons.
+	Modified status bars to have configurable time and range displays
+	  and to show Menu and Tool Bar hints.
+	Removed AUX volume (should use sound card's mixer instead).
+	Added Window options to configure placement and size of Main window
+	  and Sound windows.
+	Improved direct editing with the mouse to prevent skipping.
+	Made start/finish markers and play position line solid.
+	Made start/finish marker movable in Overview bar.
+	Used different graphing algorithm to make sound graphs appear
+	  cleaner and more accurate.
+	Added graph cache to speed up redrawing of Sound windows.
+	Added a background colour for the selection.
+	Moved Settings options to File and Window options.
+	Moved Editing options channel control to Edit menu.
+	Improved Mix and Paste quality when editing across different
+	  sampling rates.
+	Implemented virtual clipboard to allow copying of large files.
+	Added Tools menu.
+	Changed Cue Points interface and added a Revise button.
+	Changed Evaluator interface and code to support unlimited files.
+	Added CD player with play, pause, stop, track up, track down,
+	  eject, track scroll bar, and position gauge controls.
+	Revised and improved on-line help.
+	Created numerous presets in gwpreset.ini.
+	Fixed bugs: ADPCM, evaluator parser.
+
+
+v2.12 to v2.14:
+---------------
+	Minor bug fixes: division by zero, sun export, etc.
+
+v2.12F:
+-------
+	Licensed French commercial version.
+
+v2.11:
+------
+	Updated BWCC.DLL.
+	Fixed bug: Maximize window on startup.
+
+v2.10:
+------
+	New effects: offset and transpose.
+	Renamed cross-fade to interpolate.
+	Added cue points and zoom any.
+	Changed undo to ask whether to continue when disk is full.
+	Enhanced VOC file support (8-bit/16-bit/mu-law mono/stereo).
+	Added support for 12-bit raw files.
+	Added file name to Raw File Format dialog.
+	Improved evaluator and added an expression file so expressions
+	  can be organized and saved.
+	Added system menu to Device Controls window.
+	Fixed bugs: Saved window coordinates, initial volume,
+	  Alt+F4, Speed text, etc.
+
+v2.01
+------
+	Licensed commercial version.
+
+v2.00:
+------
+	New effects: cross-fade, resample, mechanize, pan, volume shaping,
+	  fade in, echo reverb, and 4 filters.
+	Added trim to editing.
+	More view commands: user, 20:1, 5:1, 1:10, 1:100.
+	Enhanced Device Controls window: dual oscilloscopes, setup dialog.
+	Setup for Device Controls: graph type, controls, looping,
+	  graph length, positioning, other.
+	New tool bar buttons: Trim, User, Chan, Undo.
+	Added second information bar for block info.
+	Added Spectrum analyzer (easier said than done).
+	Added direct editing with the mouse.
+	Improved keyboard support.
+	Added Export command.
+	Added file support for ADPCM, MULAW, unsigned 16-bit, byte
+	  swap, Matlab.
+	Added progress indicator in the information bar.
+	Changed the expression evaluator, added edit buttons and "f" variable.
+	Fixed bugs: Stereo echo, balance, PC Tools loading, refresh, etc.
+
+v1.00:
+------
+	First release.  Includes: mono/stereo, 8/16 bit, mu-law, independent
+	  channel editing, up to 5 sound windows, detached Scope and
+	  Controls window, tool bar, information (attributes) bar, MDI,
+	  expression evaluator, and several effects.
+

@@ -1,0 +1,6 @@
+{
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "clang.executable": "clang",
+    "terminal.integrated.shell.windows": "A:\\LLVM\\bin"
+}

@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/test_a.dir/wav.c.o  -o test_a -Wl,-rpath,"/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib" lib/libliba.so 

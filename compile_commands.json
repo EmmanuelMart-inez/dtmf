@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/dell/Descargas",
+  "command": "/usr/bin/cc  -I/home/dell/Descargas/lib    -o CMakeFiles/test_a.dir/wav.c.o   -c /home/dell/Descargas/wav.c",
+  "file": "/home/dell/Descargas/wav.c"
+},
+{
+  "directory": "/home/dell/Descargas/lib",
+  "command": "/usr/bin/cc -Dliba_EXPORTS  -fPIC   -o CMakeFiles/liba.dir/a.c.o   -c /home/dell/Descargas/lib/a.c",
+  "file": "/home/dell/Descargas/lib/a.c"
+}
+]

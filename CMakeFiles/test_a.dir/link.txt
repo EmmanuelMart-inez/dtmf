@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/test_a.dir/wav.c.o  -o test_a -Wl,-rpath,/home/dell/Descargas/lib lib/libliba.so 

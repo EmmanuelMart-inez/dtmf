@@ -1,0 +1,6 @@
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/CMakeFiles/rebuild_cache.dir
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/CMakeFiles/test_a.dir
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/CMakeFiles/edit_cache.dir
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/CMakeFiles/rebuild_cache.dir
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/CMakeFiles/liba.dir
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/CMakeFiles/edit_cache.dir

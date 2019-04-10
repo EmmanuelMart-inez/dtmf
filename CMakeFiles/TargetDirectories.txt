@@ -1,0 +1,6 @@
+/home/dell/Descargas/CMakeFiles/rebuild_cache.dir
+/home/dell/Descargas/CMakeFiles/test_a.dir
+/home/dell/Descargas/CMakeFiles/edit_cache.dir
+/home/dell/Descargas/lib/CMakeFiles/rebuild_cache.dir
+/home/dell/Descargas/lib/CMakeFiles/liba.dir
+/home/dell/Descargas/lib/CMakeFiles/edit_cache.dir

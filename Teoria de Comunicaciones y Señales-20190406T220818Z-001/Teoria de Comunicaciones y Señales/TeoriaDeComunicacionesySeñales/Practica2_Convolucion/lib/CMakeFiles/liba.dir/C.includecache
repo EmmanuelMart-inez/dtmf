@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/a.c
+wave.h
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/wave.h
+stdio.h
+-
+
+/home/dell/Descargas/Teoria de Comunicaciones y Señales-20190406T220818Z-001/Teoria de Comunicaciones y Señales/TeoriaDeComunicacionesySeñales/Practica2_Convolucion/lib/wave.h
+
