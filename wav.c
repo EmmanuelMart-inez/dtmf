@@ -12,13 +12,13 @@ void Convolucion (FILE *archivo, wave *entrada, wave *salida);
 void Escalamiento(double *w, wave *entrada);
 
 
-int main(){
+int main(int argc, char *argv[]){
 	FILE *archivoEntrada, *archivoEscritura;
 	wave wav;
-	wave *conv;
+	wave *conv;	
 	archivoEntrada=fopen("probe1.wav","rb");	
 	archivoEscritura=fopen("salida.wav","wb");	
-	
+
 	if (archivoEntrada!=NULL && archivoEntrada!=NULL) 
  	{
 		formatowave(archivoEntrada, &wav);
@@ -72,11 +72,11 @@ void imprimirFormato (wave *wav){
 	printf("num_samples(%lu):\n", wav->num_samples);
 	printf("size(%ld):\n", wav->size_of_each_sample);
 	for(i=0; i<wav->num_samples; i++){
-		printf("(%d:%04x)\n",i, wav->muestras[i]);
+		//printf("(%d:%04x)\n",i, wav->muestras[i]);
 		}
 	for(i=0; i<74; i++){
-		printf("|%d:%02x", i, wav->end[i]);
-	}printf("|\n");
+		//printf("|%d:%02x", i, wav->end[i]);
+	}//printf("|\n");
 }
 
 void formatowave (FILE *archivoEntrada, wave *header){
@@ -168,12 +168,13 @@ void Convolucion (FILE *archivo, wave *entrada, wave *salida){
   			//h[n]=h[n-1]; **
   			//h[0]=0; ** Sirven para el caso n+k
   			//printf("%lf\n", aux[i]);
-  			for(k=99; k>=0; k--){
+  			for(k=0; k<100; k++){
   				//if((k+n) < entrada->num_samples)
 	  				aux[n] += (entrada->muestras[k+n]*h[k]);
 	   		}
-  		printf("%lf\n", aux[i]);
-  		entrada->muestras[n] = aux[n]/4;
+  		//printf("%lf\n", aux[i]);
+  		//entrada->muestras[n] = aux[n];
+  		//entrada->muestras[n] = aux[n]/4;
   		aux[n+1]=0;
   		}
   		/*Post Filtro
@@ -187,7 +188,7 @@ void Convolucion (FILE *archivo, wave *entrada, wave *salida){
 	   		}
 		*/
   	//salida->num_samples = entrada->num_samples;
-  	//Escalamiento(aux, salida);
+  	Escalamiento(aux, entrada);
   	//imprimirFormato(salida);
   	escribirArchivo(archivo, entrada);
 }
@@ -198,7 +199,7 @@ double BuscaMuestraMayor(double *w, wave *signa){
 	for(i=0; i < signa->num_samples; i++)
 		if(fabs(w[i]) > max)	
 			max = w[i];
-	return max;
+	return max/32767;
 }
 
 void Escalamiento(double *w, wave *entrada){
@@ -207,13 +208,14 @@ void Escalamiento(double *w, wave *entrada){
    	int i;
    	//printf("Samples: %lu\n",entrada->num_samples);
    	for(i=0; i < entrada->num_samples; i++){
-  		entrada->muestras[i] = w[i];
+  		entrada->muestras[i] = w[i]/max;
   		//printf("%u\n", sample[i]);
-  		if(entrada->muestras[i] > 32767)
-  			entrada->muestras[i] = 32767;
-  		else if(entrada->muestras[i] < -32767)
-  			entrada->muestras[i] = -32767;
-  		printf("%04x\n", entrada->muestras[i]);
+  		//if(entrada->muestras[i] > 32767)
+  		//	entrada->muestras[i] = 32767;
+  		//else if(entrada->muestras[i] < -32767)
+  		//	entrada->muestras[i] = -32767;
+  		//printf("%04x\n", entrada->muestras[i]);
    	}
 }
 
+//PASAR ENTRADA A LAS FUNCIONES ES SOLO PARA CONOCER NUM_SAMPLES
