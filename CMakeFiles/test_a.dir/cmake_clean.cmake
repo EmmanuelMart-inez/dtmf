@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_a.dir/wav.c.o"
+  "CMakeFiles/test_a.dir/TFD.c.o"
   "test_a.pdb"
   "test_a"
 )

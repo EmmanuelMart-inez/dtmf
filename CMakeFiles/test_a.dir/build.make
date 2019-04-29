@@ -57,38 +57,38 @@ include CMakeFiles/test_a.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/test_a.dir/flags.make
 
-CMakeFiles/test_a.dir/wav.c.o: CMakeFiles/test_a.dir/flags.make
-CMakeFiles/test_a.dir/wav.c.o: wav.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dell/Descargas/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test_a.dir/wav.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/test_a.dir/wav.c.o   -c /home/dell/Descargas/wav.c
+CMakeFiles/test_a.dir/TFD.c.o: CMakeFiles/test_a.dir/flags.make
+CMakeFiles/test_a.dir/TFD.c.o: TFD.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dell/Descargas/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test_a.dir/TFD.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/test_a.dir/TFD.c.o   -c /home/dell/Descargas/TFD.c
 
-CMakeFiles/test_a.dir/wav.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_a.dir/wav.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dell/Descargas/wav.c > CMakeFiles/test_a.dir/wav.c.i
+CMakeFiles/test_a.dir/TFD.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_a.dir/TFD.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dell/Descargas/TFD.c > CMakeFiles/test_a.dir/TFD.c.i
 
-CMakeFiles/test_a.dir/wav.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_a.dir/wav.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dell/Descargas/wav.c -o CMakeFiles/test_a.dir/wav.c.s
+CMakeFiles/test_a.dir/TFD.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_a.dir/TFD.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dell/Descargas/TFD.c -o CMakeFiles/test_a.dir/TFD.c.s
 
-CMakeFiles/test_a.dir/wav.c.o.requires:
+CMakeFiles/test_a.dir/TFD.c.o.requires:
 
-.PHONY : CMakeFiles/test_a.dir/wav.c.o.requires
+.PHONY : CMakeFiles/test_a.dir/TFD.c.o.requires
 
-CMakeFiles/test_a.dir/wav.c.o.provides: CMakeFiles/test_a.dir/wav.c.o.requires
-	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/wav.c.o.provides.build
-.PHONY : CMakeFiles/test_a.dir/wav.c.o.provides
+CMakeFiles/test_a.dir/TFD.c.o.provides: CMakeFiles/test_a.dir/TFD.c.o.requires
+	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/TFD.c.o.provides.build
+.PHONY : CMakeFiles/test_a.dir/TFD.c.o.provides
 
-CMakeFiles/test_a.dir/wav.c.o.provides.build: CMakeFiles/test_a.dir/wav.c.o
+CMakeFiles/test_a.dir/TFD.c.o.provides.build: CMakeFiles/test_a.dir/TFD.c.o
 
 
 # Object files for target test_a
 test_a_OBJECTS = \
-"CMakeFiles/test_a.dir/wav.c.o"
+"CMakeFiles/test_a.dir/TFD.c.o"
 
 # External object files for target test_a
 test_a_EXTERNAL_OBJECTS =
 
-test_a: CMakeFiles/test_a.dir/wav.c.o
+test_a: CMakeFiles/test_a.dir/TFD.c.o
 test_a: CMakeFiles/test_a.dir/build.make
 test_a: lib/libliba.so
 test_a: CMakeFiles/test_a.dir/link.txt
@@ -100,7 +100,7 @@ CMakeFiles/test_a.dir/build: test_a
 
 .PHONY : CMakeFiles/test_a.dir/build
 
-CMakeFiles/test_a.dir/requires: CMakeFiles/test_a.dir/wav.c.o.requires
+CMakeFiles/test_a.dir/requires: CMakeFiles/test_a.dir/TFD.c.o.requires
 
 .PHONY : CMakeFiles/test_a.dir/requires
 

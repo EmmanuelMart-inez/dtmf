@@ -136,32 +136,32 @@ liba/fast:
 	$(MAKE) -f lib/CMakeFiles/liba.dir/build.make lib/CMakeFiles/liba.dir/build
 .PHONY : liba/fast
 
-wav.o: wav.c.o
+TFD.o: TFD.c.o
 
-.PHONY : wav.o
+.PHONY : TFD.o
 
 # target to build an object file
-wav.c.o:
-	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/wav.c.o
-.PHONY : wav.c.o
+TFD.c.o:
+	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/TFD.c.o
+.PHONY : TFD.c.o
 
-wav.i: wav.c.i
+TFD.i: TFD.c.i
 
-.PHONY : wav.i
+.PHONY : TFD.i
 
 # target to preprocess a source file
-wav.c.i:
-	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/wav.c.i
-.PHONY : wav.c.i
+TFD.c.i:
+	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/TFD.c.i
+.PHONY : TFD.c.i
 
-wav.s: wav.c.s
+TFD.s: TFD.c.s
 
-.PHONY : wav.s
+.PHONY : TFD.s
 
 # target to generate assembly for a file
-wav.c.s:
-	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/wav.c.s
-.PHONY : wav.c.s
+TFD.c.s:
+	$(MAKE) -f CMakeFiles/test_a.dir/build.make CMakeFiles/test_a.dir/TFD.c.s
+.PHONY : TFD.c.s
 
 # Help Target
 help:
@@ -173,9 +173,9 @@ help:
 	@echo "... test_a"
 	@echo "... edit_cache"
 	@echo "... liba"
-	@echo "... wav.o"
-	@echo "... wav.i"
-	@echo "... wav.s"
+	@echo "... TFD.o"
+	@echo "... TFD.i"
+	@echo "... TFD.s"
 .PHONY : help
 
 

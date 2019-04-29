@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dell/Descargas/wav.c" "/home/dell/Descargas/CMakeFiles/test_a.dir/wav.c.o"
+  "/home/dell/Descargas/TFD.c" "/home/dell/Descargas/CMakeFiles/test_a.dir/TFD.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
