@@ -13,6 +13,7 @@ void imprimirFormato (wave *wav);
 void escribirArchivo(FILE *archivoEscritura, wave *header);
 void Multiplicacion (FILE *archivo, wave *in, wave *out);
 void Trasformadafourier(FILE *archivo, wave *s);
+void TrasformadafourierInversa(FILE *archivo, wave *s);
 /*----------------------------------*/
 void CrearWaveFormatMono2Stereo(short *data, wave *old, wave *header, int num_channels, long num_samples, int bits_per_sample, long sample_rate);
 void BigEndianLong2LittleEndianChar(unsigned char *a, unsigned long in, int tam);
@@ -31,10 +32,12 @@ int main(int argc, char **argv){
 	if (archivoEntrada1!=NULL && archivoEscritura!=NULL) 
  	{
 		formatowave(archivoEntrada1, &wav1);	
-		//imprimirFormato(&wav1);	
-		Trasformadafourier(archivoEscritura, &wav1);
-		imprimirFormato(&wav1);
+		imprimirFormato(&wav1);	
+		TrasformadafourierInversa(archivoEscritura, &wav1);
+		//CrearWaveFormatMono2Stereo(wav1.muestras, &wav1, &wav2, 2, wav1.num_samples, wav1.bits_per_sample, wav1.sample_rate);  
 		escribirArchivo(archivoEscritura, &wav1);
+		//imprimirFormato(&wav1);
+		//escribirArchivo(archivoEscritura, &wav1);
 		//Multiplicacion(archivoEscritura,&wav1,&wav2);
 		//escribirArchivo(archivoEscritura, conv);
 		//imprimirFormato(conv);
@@ -44,6 +47,35 @@ int main(int argc, char **argv){
 	}else
  	printf("No se pudo generar el archivo\n");
 
+}
+
+
+void TrasformadafourierInversa(FILE *archivo, wave *s){
+	int k,n,N,i;
+	N = s->num_samples;
+	double *real = malloc(sizeof(double)*s->num_samples);
+	double *imag = malloc(sizeof(double)*s->num_samples);
+	short *data = malloc(sizeof(short)*(2*s->num_samples));
+ 	i=0;
+	for(k=0; k < s->num_samples; k++){
+		real[k]=0;
+		imag[k]=0;
+		for(n=0; n < 2*s->num_samples; n+=2){
+			real[k] += s->muestras[n]*cos(2*PI*k*n/(2*N));
+			imag[k] += s->muestras[n+1]*sin(2*PI*k*n/(2*N));
+			//Para abarcar la señal estereo se toman de dos en dos señales y esto afecta al total de n muestras
+			// para compensar ese incremento se divide la frecuencia que se vio afectada por el valor de 2
+		}
+		//real[k] = real[k]/N;
+		//imag[k] = -imag[k]/N;
+		printf("real[%lf]imaginaria[%lf]\n", real[k], imag[k]);
+		data[i] = real[k];
+		i++;
+		data[i] = -imag[k]; //Segun la formula deberia ser negativo pero al serlo la funcion seno se invierte sobre
+							// el eje vertical, de tal forma que con el signo menos se logra reconstruir la señal correctamente
+		i++;
+	}
+	CrearWaveFormatMono2Stereo(data, s, s, 2, s->num_samples, s->bits_per_sample, s->sample_rate);  	
 }
 
 void Trasformadafourier(FILE *archivo, wave *s){
@@ -56,18 +88,18 @@ void Trasformadafourier(FILE *archivo, wave *s){
 	for(k=0; k < s->num_samples; k++){
 		real[k]=0;
 		imag[k]=0;
-		for(n=0; n < s->num_samples; n++){
+		for(n=0; n < 2*s->num_samples; n+=2){
 			real[k] += s->muestras[n]*cos(2*PI*k*n/N);
-			imag[k] += s->muestras[n]*sin(2*PI*k*n/N);
+			imag[k] += s->muestras[n+1]*sin(2*PI*k*n/N);
 			//printf("k[%d]n[%d]Cos:%lf\n",k, n, s->muestras[n]*cos(2*PI*k*n/N));
 			//printf("Sen:%lf\n", sin(2*PI*k*n/N));
 		}
 		//real[k] = real[k]/N;
 		//imag[k] = -imag[k]/N;
 		printf("real[%lf]imaginaria[%lf]\n", real[k], imag[k]);
-		data[i] = real[k]/N;
+		data[i] = real[k];
 		i++;
-		data[i] = -imag[k]/N;
+		data[i] = imag[k];
 		i++;
 	}
 	CrearWaveFormatMono2Stereo(data, s, s, 2, s->num_samples, s->bits_per_sample, s->sample_rate);  	
@@ -113,8 +145,8 @@ void imprimirFormato (wave *wav){
 		printf("(%d:%04x)\n",i, wav->muestras[i]);
 		}
 	for(i=0; i<74; i++){
-		//printf("|%d:%02x", i, wav->end[i]);
-	}//printf("|\n");
+		printf("|%d:%02x", i, wav->end[i]);
+	}printf("|\n");
 }
 
 void formatowave (FILE *archivoEntrada, wave *header){
@@ -164,8 +196,9 @@ void formatowave (FILE *archivoEntrada, wave *header){
 				(header->data_sizeb[3] << 24 );
  		header->num_samples = (8 * header->data_size) / (header->channels * header->bits_per_sample);
  		header->size_of_each_sample = (header->channels * header->bits_per_sample) / 8;
- 		header->muestras = malloc (sizeof(short)*header->num_samples);
- 		for(i=0; i<header->num_samples; i++){
+ 		header->muestras = malloc (header->channels*sizeof(short)*header->num_samples);
+ 		//version para stereo MODIFICACION = multiplicacion por el numero de chanenls 
+ 		for(i=0; i<header->channels*header->num_samples; i++){
 	 		fread(&header->muestras[i], sizeof(short), 1, archivoEntrada);
 			//printf("(%x):\n", header->muestras[i]);
 		}
