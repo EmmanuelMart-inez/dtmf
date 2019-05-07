@@ -1,29 +1,58 @@
-#include <math.h>
-//#include <fcntl.h> // for open
-//#include <unistd.h> // for close
 #include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
-#include <string.h> //memcpy
+#include <string.h>
 #include "wave.h"
 
-#define PI 3.141592654
+#define Pi 3.141592653589
+
+#define SWAP(a,b) tempr=(a); (a)=(b); (b)=tempr
+
+#define M 512
+
+#define FLOAT_TO_INT(x) ((x)>=0?(int)((x)+0.5):(int)((x)-0.5)) //Redondeo
+
 
 void formatowave (FILE *archivo, wave *w);
 void imprimirFormato (wave *wav);
 void escribirArchivo(FILE *archivoEscritura, wave *header);
 void Multiplicacion (FILE *archivo, wave *in, wave *out);
 void Trasformadafourier(FILE *archivo, wave *s);
+void CopyShort2Float(float *sample, short *b, int tam);
+void Set32768to1(float *sample, int tam);
+void Set1to32768(float *sample, int tam);
+int RellenaConCeros(float *sample, int tam);
+int SetComplexNumber(float *re, float *im, short *new, int tam); //Return new size of tam
 /*----------------------------------*/
 void CrearWaveFormatMono2Stereo(short *data, wave *old, wave *header, int num_channels, long num_samples, int bits_per_sample, long sample_rate);
 void BigEndianLong2LittleEndianChar(unsigned char *a, unsigned long in, int tam);
 /*--------------------------------------------*/
 void Escalamiento(double *w, wave *entrada);
+/*-------------------------------------------*/
+void dft(float xr[], float xi[], int m, int inverse);
+void bitreversal(float x[], int m);
+void fft(float xr[], float xi[], int m, int inverse);
 
-int main(int argc, char **argv){
-	FILE *archivoEntrada1, *archivoEscritura;
+void main(void)
+{ int i,n,m, num_samples_rellenado;
+  /*Inicialización, valores iniciales para prueba [m,N,f1,f2,xr,xi]
+  N=pow(2.0,(float)m);
+  N=32;
+  printf("N=%d\n",N);
+  f1=3; f2=5;
+  for (n=0; n<22; n++) { 
+    xr[n]=cos(2*Pi*f1*n/N)+cos(2*Pi*f2*n/N); 
+    xi[n]=0;
+  }
+  //  for (n=2; n<5; n++) xr[n]=n; 
+  for (n=22; n<N; n++) xr[n]=0;
+  */
+
+  /*Prepocesamiento para integración del formato wav*/
+  FILE *archivoEntrada1=NULL, *archivoEscritura=NULL;
 	wave wav1, wav2;
 	wave *conv;	 
-	archivoEntrada1=fopen("uno.wav","rb");
+	archivoEntrada1=fopen("sen32.wav","rb");
 	archivoEscritura=fopen("salida.wav","wb");
 	//archivoEntrada1=fopen(argv[1],"rb");
 	//archivoEscritura=fopen(argv[2],"wb");	
@@ -31,20 +60,196 @@ int main(int argc, char **argv){
 	if (archivoEntrada1!=NULL && archivoEscritura!=NULL) 
  	{
 		formatowave(archivoEntrada1, &wav1);	
+		//imprimirFormato(&wav1)
+
+		//Escalamiento y Separacion compleja
+		float *xr = (float *)calloc(wav1.num_samples,sizeof(float));	
+	 	float *xi = (float *)calloc(wav1.num_samples,sizeof(float));	
+		CopyShort2Float(xr, wav1.muestras, wav1.num_samples);
+		Set32768to1(xr, wav1.num_samples);
+		//cambiar al usar wav2
+		printf("\nN:%ld\n", wav1.num_samples);
+		int nbase2 = pow(2,ceil(log2(wav1.num_samples)));
+		printf("\nNbase2:%d\n", nbase2);
+		xr = (float *)realloc(xr, nbase2*sizeof(float));
+		xi = (float *)realloc(xi, nbase2*sizeof(float));
+		num_samples_rellenado = RellenaConCeros(xr, wav1.num_samples);
+		num_samples_rellenado = RellenaConCeros(xi, wav1.num_samples);
+		
+		//Inicialización de variables
+		n = num_samples_rellenado; 
+		m = (int)log2(n);
+		printf("\n m:%d\n", m);
+		//escribirArchivo(archivoEscritura, &wav1);
 		//imprimirFormato(&wav1);	
-		Trasformadafourier(archivoEscritura, &wav1);
-		imprimirFormato(&wav1);
-		escribirArchivo(archivoEscritura, &wav1);
-		//Multiplicacion(archivoEscritura,&wav1,&wav2);
-		//escribirArchivo(archivoEscritura, conv);
-		//imprimirFormato(conv);
+		/*for(i=0; i<wav1.num_samples; i++){
+			printf("%lf\n", xr[i]);
+		}
+*/
+  /*Behavior*/
+
+  int j,k, flg;
+  float w;
+
+ // n=pow(2.0,(float)m);
+  printf("n=%d\n",n);
+
+  printf("\n time domain:\n");
+  for (i=0; i<n; i++) {
+    printf("(%4.1f %4.1f) ",xr[i], xi[i]);
+  }
+  printf("\n");
+
+  printf("\nDFT (0) or FFT (1)? ");  scanf("%d",&flg);
+
+  if (flg) fft(xr,xi,m,0);  // forward fft  
+  else     dft(xr,xi,m,0);  // forward dft
+
+  printf("\n frequency domain:\n");
+  for (i=0; i<n; i++) {
+    printf("(%4.1f %4.1f) ",xr[i], xi[i]);
+  }
+  printf("\n");
+
+  // This is where you can insert your 1D filtering codes. */
+
+  short *data = (short *)malloc(2*num_samples_rellenado*sizeof(short));
+  
+  SetComplexNumber(xr, xi, data, num_samples_rellenado);
+  printf("\n\n");
+  for (i=0; i<n; i+=2) {
+    printf("{%d}(%d %d) ", i,data[i], data[i+1]);
+  }
+  printf("\n");
+  CrearWaveFormatMono2Stereo(data, &wav1, &wav2, 2, num_samples_rellenado, wav1.bits_per_sample, wav1.sample_rate);
+  escribirArchivo(archivoEscritura, &wav2);
+  //
+  /*f (flg) fft(xr,xi,m,1);   // inverse fft  
+  else     dft(xr,xi,m,1);   // inverse dft
+
+  printf("\n back to time domain:\n");
+  for (i=0; i<n; i++) {
+    printf("(%4.1f %4.1f) ",xr[i], xi[i]);
+  }*/
+  printf("\n");
+
 
 		fclose(archivoEntrada1);
 		fclose(archivoEscritura);
+		free(xr);
+		free(xi);
+		free(data);
 	}else
  	printf("No se pudo generar el archivo\n");
+	
 
+}    
+
+void bitreversal(float x[], int m)   /*  bit reverses a given vector x[] */
+{ int i,j,k, N=pow(2.0,(float)m);
+  float tempr;
+  for (i=0; i<N; ++i) {       /* bit reversal */
+    j=0;
+    for (k=0; k<m; ++k)
+      j=(j << 1) | (1 & (i >> k));
+    if (j < i) {
+      SWAP(x[i],x[j]);
+    }
+  }
 }
+
+void fft(float xr[], float xi[], int m, int inverse)
+{ int mmax,step,i,j,k,j1,n,nu,N;
+  float arg,s,c,tempr,tempi;
+
+  N=pow(2.0,(float)m);
+  if (inverse) printf("IFFT of size %d \n",N);
+  else printf("FFT of size %d \n",N);
+/*
+  printf("\n before reversal...\n");
+  for (i=0; i<N; i++)  printf("%3.0f ",xr[i]);
+  printf("\n");
+*/
+
+  bitreversal(xr,m); bitreversal(xi,m);   /* bit reversal of input data */
+
+/*
+  printf("\n after reversal...\n");
+  for (i=0; i<N; i++)  printf("%3.0f ",xr[i]);
+  printf("\n");
+  pause();
+*/
+
+  for (i=0; i<m; i++) {         /* for m=log N stages */
+    n=pow(2.0,(float)i);                 /* length of a section */
+    k=0;
+    while (k<N-1) {             /* for N components in each stage */
+      for (j=0; j<n; j++) {     /* for each section */
+	arg=-j*6.28318530717959/n/2;
+	if (inverse) arg=-arg;
+	c=cos(arg);
+	s=sin(arg);
+	j1=k+j;
+	tempr=xr[j1+n]*c-xi[j1+n]*s;
+	tempi=xi[j1+n]*c+xr[j1+n]*s;
+	xr[j1+n]=xr[j1]-tempr;
+	xi[j1+n]=xi[j1]-tempi;
+	xr[j1]=xr[j1]+tempr;
+	xi[j1]=xi[j1]+tempi;
+      }
+      k+=2*n;
+    }
+  }
+  if (inverse) {        /* only for inverse transform */
+    for (i=0; i<N; i++) {
+      xr[i]=xr[i]/N;
+      xi[i]=xi[i]/N;
+    }
+  }
+}
+
+void dft(float xr[], float xi[], int m, int inverse)
+{
+  int i,j,k,N,len;
+  float w;
+  N=pow(2.0,(float)m);
+  float *yr = (float *)calloc(N,sizeof(float)); 
+  float *yi = (float *)calloc(N,sizeof(float)); 
+  float **wr = (float **)malloc(N * sizeof(float *)); 
+    for (i=0; i<N; i++) 
+         wr[i] = (float *)malloc(N * sizeof(int));
+  float **wi = (float **)malloc(N * sizeof(float *)); 
+    for (i=0; i<N; i++) 
+         wi[i] = (float *)malloc(N * sizeof(int));
+
+  for (i=0; i<N; i++)
+    { yr[i]=xr[i], yi[i]=xi[i]; }
+
+  printf("\nThe transform matrix:\n");
+  for (i=0; i<N; i++) {
+    for (j=0; j<N; j++) {
+      w=6.28318530717959*i*j/N;
+      wr[i][j]=cos(w);
+      wi[i][j]=-sin(w);
+      if (inverse) wi[i][j]=-wi[i][j];
+      printf("(%5.2f %5.2f) ",wr[i][j],wi[i][j]);
+    }
+    printf("\n");
+  }
+
+  for (i=0; i<N; i++) {
+    xr[i]=xi[i]=0;
+    for (j=0; j<N; j++) {
+      xr[i]+=wr[i][j]*yr[j]-wi[i][j]*yi[j];
+      xi[i]+=wr[i][j]*yi[j]+wi[i][j]*yr[j];
+    }
+    if (!inverse) 
+      { xr[i]/=N; xi[i]/=N; }
+    //    printf("(%.2f %.2f) ",xr[i],xi[i]);
+  }
+  free(yr); free(yi);
+}
+
 
 void Trasformadafourier(FILE *archivo, wave *s){
 	int k,n,N,i;
@@ -57,8 +262,8 @@ void Trasformadafourier(FILE *archivo, wave *s){
 		real[k]=0;
 		imag[k]=0;
 		for(n=0; n < s->num_samples; n++){
-			real[k] += s->muestras[n]*cos(2*PI*k*n/N);
-			imag[k] += s->muestras[n]*sin(2*PI*k*n/N);
+			real[k] += s->muestras[n]*cos(2*Pi*k*n/N);
+			imag[k] += s->muestras[n]*sin(2*Pi*k*n/N);
 			//printf("k[%d]n[%d]Cos:%lf\n",k, n, s->muestras[n]*cos(2*PI*k*n/N));
 			//printf("Sen:%lf\n", sin(2*PI*k*n/N));
 		}
@@ -302,3 +507,66 @@ void BigEndianLong2LittleEndianChar(unsigned char *a, unsigned long in, int tam)
 
 //PASAR ENTRADA A LAS FUNCIONES ES SOLO PARA CONOCER NUM_SAMPLES
 
+void CopyShort2Float(float *sample, short *b, int tam){
+	int i;
+	for (int i = 0; i < tam; ++i)
+	{
+		sample[i] = (float)b[i];
+		//printf("%f\n", a[i]);
+	}
+}
+
+void Set32768to1(float *sample, int tam){
+	int i;
+	for (int i = 0; i < tam; ++i)
+	{
+		sample[i] = sample[i]/32768;
+		//printf("%f\n", a[i]);
+	}
+}
+
+int RellenaConCeros(float *sample, int tam){
+	int i, nbase2, n;
+	//La función ceil devuelve el menor valor entero no inferior a x. 
+	//Redondeo hacia arriba
+	nbase2 = ceil(log2(tam));
+	n = pow(2, nbase2);
+	for (int i = 0; i < n; ++i)
+	{
+		if(i>=tam)
+			sample[i]=0;
+	}
+
+	return n;
+}
+
+
+void Set1to32768(float *sample, int tam){
+	int i;
+	int aux;
+	for (int i = 0; i < tam; ++i)
+	{	
+		aux = sample[i]*32768;
+		if(abs(aux)<32768)
+			sample[i] = sample[i]*32768;
+		else
+			if(sample[i]>32768)
+				sample[i]=32768;
+			else
+				sample[i]=-32768;
+		//printf("%f\n", a[i]);
+	}
+}
+
+int SetComplexNumber(float *re, float *im, short *new, int tam){
+	int i,j; 
+	Set1to32768(re, tam);
+	Set1to32768(im, tam);
+	
+	for (int i = 0, j = 0; i < tam; i++,j+=2)
+	{
+		new[j] = re[i];
+		new[j+1] = im[i];
+		printf("(%d %d) ",new[j], new[j+1]);
+	}
+}
